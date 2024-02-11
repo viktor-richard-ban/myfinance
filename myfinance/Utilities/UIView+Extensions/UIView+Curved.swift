@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
     // source: https://stackoverflow.com/questions/52495806/rounded-curve-edge-for-uiview
     func addBottomRoundedEdge() {
-        let offset: CGFloat = (self.frame.width * 1.5)
+        let offset: CGFloat = (self.frame.width * 0.8)
         let bounds: CGRect = self.bounds
         
         let rectBounds: CGRect = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.size.width , height: bounds.size.height / 2)
