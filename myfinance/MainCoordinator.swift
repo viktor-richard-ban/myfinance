@@ -13,11 +13,11 @@ final class MainCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        navigationController.isNavigationBarHidden = true
     }
     
     func start() {
-        let viewController = ViewController()
-        viewController.view.backgroundColor = .blue
+        let viewController = DashboardViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
 }
