@@ -9,10 +9,26 @@ import UIKit
 
 class DashboardViewController: BaseViewController {
     
+    // MARK: - ViewModel
+    private let viewModel: DashboardViewModel
+    
     // MARK: - Private properties
-    private let balanceComponent = BalanceComponent()
+    private let balanceComponent: BalanceComponent
     private let overviewComponent = OverviewComponent()
-
+    
+    // MARK: - Inits
+    init(viewModel: DashboardViewModel) {
+        self.viewModel = viewModel
+        
+        let dataAndEvents = viewModel.bind()
+        self.balanceComponent = BalanceComponent(viewModel: dataAndEvents.data.balanceComponentViewModel)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +51,5 @@ class DashboardViewController: BaseViewController {
             overviewComponent.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -26),
         ])
     }
-
-
 }
 

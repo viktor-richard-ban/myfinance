@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class BalanceComponent: UIView {
+    
+    // MARK: - ViewModel
+    private let viewModel: BalanceComponentViewModel
+    private var disposeBag = DisposeBag()
     
     // MARK: - Private properties
     private let gradient: CAGradientLayer = {
@@ -39,14 +45,12 @@ final class BalanceComponent: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 28.0, weight: .semibold)
-        label.text = "$1,750" // TODO: - Temporary text, remove it
         return label
     }()
     private let infoLabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 14.0, weight: .regular)
-        label.text = "Available balance" // TODO: - Temporary text, remove it
         return label
     }()
     
@@ -56,13 +60,19 @@ final class BalanceComponent: UIView {
         return avatar
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    // MARK: - Inits
+    init(viewModel: BalanceComponentViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         layer.addSublayer(gradient)
-        setup()
+        setupComponent()
+        setupBindings()
     }
     
-    // MARK: - Inits
+    override init(frame: CGRect) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -73,7 +83,7 @@ final class BalanceComponent: UIView {
     }
     
     // MARK: - Setup
-    private func setup() {
+    private func setupComponent() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(containerStack)
         containerStack.addArrangedSubview(labelContainerStack)
@@ -98,6 +108,17 @@ final class BalanceComponent: UIView {
     private func updateBackground() {
         gradient.frame = bounds
         addBottomRoundedEdge()
+    }
+    
+    private func setupBindings() {
+        disposeBag = DisposeBag()
+        
+        let dataAndEvents = viewModel.bind()
+        let data = dataAndEvents.data
+        
+        data.balance.drive(balanceLabel.rx.text).disposed(by: disposeBag)
+        data.info.drive(infoLabel.rx.text).disposed(by: disposeBag)
+        data.avatar.drive(avatar.rx.image).disposed(by: disposeBag)
     }
     
 }

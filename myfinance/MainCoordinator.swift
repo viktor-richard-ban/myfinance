@@ -17,7 +17,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = DashboardViewController()
+        let viewController = DashboardViewController(viewModel: DashboardViewModel())
         navigationController.pushViewController(viewController, animated: true)
     }
 }

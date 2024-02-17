@@ -18,6 +18,8 @@ final class Avatar: UIView {
     // MARK: - Private properties
     private let imageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -34,6 +36,8 @@ final class Avatar: UIView {
     // MARK: - Setup
     private func setup() {
         layer.cornerRadius = 18.0
+        addSubview(imageView)
+        imageView.anchorToSuperview()
     }
     
 }
