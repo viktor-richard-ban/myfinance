@@ -12,7 +12,6 @@ import RxCocoa
 final class BalanceComponent: UIView {
     
     // MARK: - ViewModel
-    private let viewModel: BalanceComponentViewModel
     private var disposeBag = DisposeBag()
     
     // MARK: - Private properties
@@ -61,16 +60,10 @@ final class BalanceComponent: UIView {
     }()
     
     // MARK: - Inits
-    init(viewModel: BalanceComponentViewModel) {
-        self.viewModel = viewModel
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         layer.addSublayer(gradient)
         setupComponent()
-        setupBindings()
-    }
-    
-    override init(frame: CGRect) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     required init?(coder: NSCoder) {
@@ -109,16 +102,19 @@ final class BalanceComponent: UIView {
         gradient.frame = bounds
         addBottomRoundedEdge()
     }
+}
+
+// MARK: - Data binding
+extension BalanceComponent: DataBindable {
+    struct Data {
+        let balance: Driver<String?>
+        let info: Driver<String?>
+        let avatar: Driver<UIImage?>
+    }
     
-    private func setupBindings() {
-        disposeBag = DisposeBag()
-        
-        let dataAndEvents = viewModel.bind()
-        let data = dataAndEvents.data
-        
+    func bind(_ data: Data) {
         data.balance.drive(balanceLabel.rx.text).disposed(by: disposeBag)
         data.info.drive(infoLabel.rx.text).disposed(by: disposeBag)
         data.avatar.drive(avatar.rx.image).disposed(by: disposeBag)
     }
-    
 }

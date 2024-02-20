@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class OverviewComponent: UIView {
+    
+    // MARK: - Rx
+    private var disposeBag = DisposeBag()
     
     // MARK: - Private properties
     private let incomeView = IncomeComponent()
@@ -88,13 +93,9 @@ final class OverviewComponent: UIView {
             incomeAndOutcomeStack.heightAnchor.constraint(equalToConstant: 50.0)
         ])
         
-        incomeView.title = "Spent"
-        incomeView.value = "$1,999"
         incomeView.dotColor = .midnightOrange
         incomeAndOutcomeStack.addArrangedSubview(incomeView)
         
-        outcomeView.title = "Earned"
-        outcomeView.value = "$3,650"
         outcomeView.dotColor = .lightPurple
         incomeAndOutcomeStack.addArrangedSubview(outcomeView)
         
@@ -113,5 +114,34 @@ final class OverviewComponent: UIView {
         ])
         containerStack.addArrangedSubview(buttonContainer)
     }
+}
+
+// MARK: Data binding
+extension OverviewComponent: DataBindable {
+    struct Data {
+        let incomeTitle: Driver<String?>
+        let incomeValue: Driver<String?>
+        let outcomeTitle: Driver<String?>
+        let outcomeValue: Driver<String?>
+    }
     
+    func bind(_ data: Data) {
+        disposeBag = DisposeBag()
+        
+        data.incomeTitle.drive(incomeView.rx.title).disposed(by: disposeBag)
+        data.incomeValue.drive(incomeView.rx.value).disposed(by: disposeBag)
+        data.outcomeTitle.drive(outcomeView.rx.title).disposed(by: disposeBag)
+        data.outcomeValue.drive(outcomeView.rx.value).disposed(by: disposeBag)
+    }
+}
+
+// MARK: - Event providing
+extension OverviewComponent: EventProvider {
+    struct Events {
+        let more: ControlEvent<Void>
+    }
+    
+    var events: Events {
+        Events(more: ctaButton.rx.tap)
+    }
 }

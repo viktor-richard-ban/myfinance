@@ -11,5 +11,6 @@ protocol ViewModel {
     associatedtype Data
     associatedtype Events
     
-    func bind() -> (data: Data, events:Events)
+    func bind() -> Data
+    func listen(_ events: Events)
 }

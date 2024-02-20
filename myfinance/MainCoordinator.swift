@@ -13,11 +13,16 @@ final class MainCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        navigationController.isNavigationBarHidden = true
     }
     
     func start() {
-        let viewController = DashboardViewController(viewModel: DashboardViewModel())
+        let viewController = DashboardViewController(viewModel: DashboardViewModel(coordinator: self))
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func navigateToDetailedFinancialStatistics() {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .yellow
         navigationController.pushViewController(viewController, animated: true)
     }
 }

@@ -6,23 +6,24 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DashboardViewController: BaseViewController {
     
     // MARK: - ViewModel
     private let viewModel: DashboardViewModel
+    private var disposeBag = DisposeBag()
     
     // MARK: - Private properties
-    private let balanceComponent: BalanceComponent
+    private let balanceComponent = BalanceComponent()
     private let overviewComponent = OverviewComponent()
     
     // MARK: - Inits
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        
-        let dataAndEvents = viewModel.bind()
-        self.balanceComponent = BalanceComponent(viewModel: dataAndEvents.data.balanceComponentViewModel)
         super.init(nibName: nil, bundle: nil)
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -50,6 +51,16 @@ class DashboardViewController: BaseViewController {
             overviewComponent.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
             overviewComponent.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -26),
         ])
+    }
+    
+    private func setupBindings() {
+        disposeBag = DisposeBag()
+        
+        let data = viewModel.bind()
+        balanceComponent.bind(data.balanceComponentViewModel)
+        overviewComponent.bind(data.overviewComponentData)
+        
+        viewModel.listen(DashboardViewModel.Events(overviewComponentEvents: overviewComponent.events))
     }
 }
 
