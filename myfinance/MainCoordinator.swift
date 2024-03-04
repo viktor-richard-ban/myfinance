@@ -21,8 +21,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func navigateToDetailedFinancialStatistics() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .yellow
+        let viewController = SpendingDetailsViewController(viewModel: SpendingDetailsViewModel())
         navigationController.pushViewController(viewController, animated: true)
     }
 }

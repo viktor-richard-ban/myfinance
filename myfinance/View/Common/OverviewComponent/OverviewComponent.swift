@@ -35,17 +35,21 @@ final class OverviewComponent: UIView {
     
     private let infoLabel = {
         var label = UILabel()
-        label.text = "You spent more than in the last 3 months. Let's try to make it lower."
         label.numberOfLines = 0
         label.textColor = .gray
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
         return label
     }()
     
+    private let buttonContainer = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let ctaButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Tell me more", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         button.backgroundColor = .clear
         button.setTitleColor(UIColor.lightPurple, for: .normal)
@@ -103,8 +107,6 @@ final class OverviewComponent: UIView {
         containerStack.addArrangedSubview(line)
         containerStack.addArrangedSubview(infoLabel)
         
-        let buttonContainer = UIView()
-        buttonContainer.translatesAutoresizingMaskIntoConstraints = false
         buttonContainer.addSubview(ctaButton)
         NSLayoutConstraint.activate([
             ctaButton.topAnchor.constraint(equalTo: buttonContainer.topAnchor),
@@ -123,6 +125,9 @@ extension OverviewComponent: DataBindable {
         let incomeValue: Driver<String?>
         let outcomeTitle: Driver<String?>
         let outcomeValue: Driver<String?>
+        let info: Driver<String?>
+        let ctaButtonTitle: Driver<String?>
+        let isDetailed: Driver<Bool>
     }
     
     func bind(_ data: Data) {
@@ -132,6 +137,20 @@ extension OverviewComponent: DataBindable {
         data.incomeValue.drive(incomeView.rx.value).disposed(by: disposeBag)
         data.outcomeTitle.drive(outcomeView.rx.title).disposed(by: disposeBag)
         data.outcomeValue.drive(outcomeView.rx.value).disposed(by: disposeBag)
+        data.info.drive(infoLabel.rx.text).disposed(by: disposeBag)
+        data.ctaButtonTitle.drive(onNext: { [ctaButton] (title: String?) in
+            ctaButton.setTitle(title, for: .normal)
+        })
+        .disposed(by: disposeBag)
+        
+        data.isDetailed.drive { [weak self] (isDetailed: Bool) in
+            guard let self else { return }
+            self.line.isHidden = !isDetailed
+            self.infoLabel.isHidden = !isDetailed
+            self.ctaButton.isHidden = !isDetailed
+            self.buttonContainer.isHidden = !isDetailed
+        }
+        .disposed(by: disposeBag)
     }
 }
 

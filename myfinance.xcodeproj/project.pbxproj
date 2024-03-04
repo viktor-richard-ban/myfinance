@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A05C09E2B93756E0078CF9D /* SpendingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A05C09D2B93756E0078CF9D /* SpendingDetailsViewController.swift */; };
+		3A05C0A22B9379490078CF9D /* SpendingDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A05C0A12B9379490078CF9D /* SpendingDetailsViewModel.swift */; };
+		3A05C0A42B9388950078CF9D /* SpendingOverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A05C0A32B9388950078CF9D /* SpendingOverviewComponent.swift */; };
 		3A17E63F2B76AE91002EE2C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E63E2B76AE91002EE2C1 /* AppDelegate.swift */; };
 		3A17E6412B76AE91002EE2C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E6402B76AE91002EE2C1 /* SceneDelegate.swift */; };
 		3A17E6432B76AE91002EE2C1 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E6422B76AE91002EE2C1 /* DashboardViewController.swift */; };
@@ -27,10 +30,14 @@
 		3A74497A2B85144D0097E660 /* DataBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7449792B85144D0097E660 /* DataBindable.swift */; };
 		3AA22F5F2B791B87000AA6F9 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22F5E2B791B87000AA6F9 /* OverviewComponent.swift */; };
 		3AA22F652B793880000AA6F9 /* IncomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22F642B793880000AA6F9 /* IncomeComponent.swift */; };
+		3AAC1CD12B94C7D300814117 /* SummarizedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC1CD02B94C7D300814117 /* SummarizedList.swift */; };
 		3ACDE04A2B77A3B6007D8331 /* UIView+Curved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDE0492B77A3B6007D8331 /* UIView+Curved.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A05C09D2B93756E0078CF9D /* SpendingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingDetailsViewController.swift; sourceTree = "<group>"; };
+		3A05C0A12B9379490078CF9D /* SpendingDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingDetailsViewModel.swift; sourceTree = "<group>"; };
+		3A05C0A32B9388950078CF9D /* SpendingOverviewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingOverviewComponent.swift; sourceTree = "<group>"; };
 		3A17E63B2B76AE91002EE2C1 /* myfinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myfinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A17E63E2B76AE91002EE2C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A17E6402B76AE91002EE2C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +57,7 @@
 		3A7449792B85144D0097E660 /* DataBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBindable.swift; sourceTree = "<group>"; };
 		3AA22F5E2B791B87000AA6F9 /* OverviewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewComponent.swift; sourceTree = "<group>"; };
 		3AA22F642B793880000AA6F9 /* IncomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeComponent.swift; sourceTree = "<group>"; };
+		3AAC1CD02B94C7D300814117 /* SummarizedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedList.swift; sourceTree = "<group>"; };
 		3ACDE0492B77A3B6007D8331 /* UIView+Curved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Curved.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +75,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A05C09C2B9374FB0078CF9D /* SpendingDetails */ = {
+			isa = PBXGroup;
+			children = (
+				3A05C09F2B9375A50078CF9D /* Components */,
+				3A05C09D2B93756E0078CF9D /* SpendingDetailsViewController.swift */,
+			);
+			path = SpendingDetails;
+			sourceTree = "<group>";
+		};
+		3A05C09F2B9375A50078CF9D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3A05C0A32B9388950078CF9D /* SpendingOverviewComponent.swift */,
+				3AAC1CD02B94C7D300814117 /* SummarizedList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3A05C0A02B9375B90078CF9D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22F612B791C16000AA6F9 /* OverviewComponent */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		3A17E6322B76AE91002EE2C1 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +148,8 @@
 		3A17E6572B76C3D5002EE2C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3A05C0A02B9375B90078CF9D /* Common */,
+				3A05C09C2B9374FB0078CF9D /* SpendingDetails */,
 				3A17E6582B76C4B7002EE2C1 /* Dashboard */,
 			);
 			path = View;
@@ -132,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				3AA22F602B791C0B000AA6F9 /* BalanceComponent */,
-				3AA22F612B791C16000AA6F9 /* OverviewComponent */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -141,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				3A6749852B8117FB00DF645C /* DashboardViewModel.swift */,
+				3A05C0A12B9379490078CF9D /* SpendingDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -263,9 +299,13 @@
 				3A17E6542B76C129002EE2C1 /* Coordinator.swift in Sources */,
 				3A17E6432B76AE91002EE2C1 /* DashboardViewController.swift in Sources */,
 				3A17E63F2B76AE91002EE2C1 /* AppDelegate.swift in Sources */,
+				3AAC1CD12B94C7D300814117 /* SummarizedList.swift in Sources */,
 				3A17E6562B76C1B2002EE2C1 /* MainCoordinator.swift in Sources */,
+				3A05C0A22B9379490078CF9D /* SpendingDetailsViewModel.swift in Sources */,
 				3A17E6412B76AE91002EE2C1 /* SceneDelegate.swift in Sources */,
+				3A05C0A42B9388950078CF9D /* SpendingOverviewComponent.swift in Sources */,
 				3A17E65D2B76C8D2002EE2C1 /* BalanceComponent.swift in Sources */,
+				3A05C09E2B93756E0078CF9D /* SpendingDetailsViewController.swift in Sources */,
 				3A6749842B81123A00DF645C /* ViewModel.swift in Sources */,
 				3A17E6612B76D455002EE2C1 /* Avatar.swift in Sources */,
 				3ACDE04A2B77A3B6007D8331 /* UIView+Curved.swift in Sources */,

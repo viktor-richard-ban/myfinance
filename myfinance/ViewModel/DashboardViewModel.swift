@@ -35,7 +35,10 @@ final class DashboardViewModel: ViewModel {
                     overviewComponentData: OverviewComponent.Data(incomeTitle: .just("Spent"),
                                                                   incomeValue: .just("$1,999"),
                                                                   outcomeTitle: .just("Earned"),
-                                                                  outcomeValue: .just("$1,999")))
+                                                                  outcomeValue: .just("$1,999"),
+                                                                  info: .just("You spent more than in the last 3 months. Let's try to make it lower."),
+                                                                  ctaButtonTitle: .just("Tell me more"),
+                                                                  isDetailed: .just(true)))
     }
     
     func listen(_ events: Events) {
