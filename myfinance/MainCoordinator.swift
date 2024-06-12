@@ -16,8 +16,12 @@ final class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = ViewController()
-        viewController.view.backgroundColor = .blue
+        let viewController = DashboardViewController(viewModel: DashboardViewModel(coordinator: self))
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func navigateToDetailedFinancialStatistics() {
+        let viewController = SpendingDetailsViewController(viewModel: SpendingDetailsViewModel())
         navigationController.pushViewController(viewController, animated: true)
     }
 }
