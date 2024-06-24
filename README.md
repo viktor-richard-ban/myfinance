@@ -8,4 +8,4 @@ In the future, I would like to add some components built in SwiftUI, like widget
 # Design
 ### Author: https://www.behance.net/gracesaraswati
 ### Application design: https://www.behance.net/gallery/84067271/Uluwatu-Finance-UI-Kit
-This application is not have the official support of the designer, it is just a copy that strongly build on the above design.
+This application does not have the official support of the designer, just a copy that strongly builds on the above design.
